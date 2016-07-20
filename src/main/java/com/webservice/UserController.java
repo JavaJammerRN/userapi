@@ -7,12 +7,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController{
-	User userFound;
+	private User userFound;
 
 	@RequestMapping(value="/users", method = RequestMethod.GET)
-    public String users(@RequestParam(value="firstName", defaultValue="") String firstName) {
-		User temp= UserDAO.getUserDataByUsername("mpiccoli");
-		return temp.toString();
+    public User users(@RequestParam(value="uname", defaultValue="") String uname) {
+		User temp= UserDAO.getUserDataByUsername(uname);
+		//Verify the content of the User object
+		//if(temp.getUserID()!=-1){
+			//The user is valid
+			//return temp.toString();
+		//}
+		return temp;
     }
 
 }

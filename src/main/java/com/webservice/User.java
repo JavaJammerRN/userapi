@@ -58,6 +58,9 @@ public class User {
 			surname=sur;
 		}
 	}
+	public String getSurname(){
+		return surname;
+	}
 	public void setUsername(String s){
 		if(s!=null && !s.equals("")){
 			username=s;

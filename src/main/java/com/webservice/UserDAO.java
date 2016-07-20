@@ -9,30 +9,39 @@ import com.mysql.jdbc.Connection;
 public class UserDAO {
 
 	public static User getUserDataByUsername(String userInfo){
-		User userTemp=new User(userInfo);
-		if(userInfo!=""){
+		//Create a temporary user object to store the user information
+		if(!userInfo.equals("")){
+			//Establish a connection with the database
 			Connection connectionDB=establishConnection();
 			if(connectionDB!=null){
 				try{
 					Statement stmt = connectionDB.createStatement();
-					//The query can be update query or can be select query
-					String query = "select * from user where userID=68";
+					//Adjust the query
+					String query = "select * from user where username='"+userInfo+"'";
+					//Execute the query
 					boolean status = stmt.execute(query);
 					if(status){
+						//Extract the data from the resultset object
 						ResultSet rs = stmt.getResultSet();
+						User userTemp=new User(userInfo);
 						while(rs.next()){
 							userTemp.setUserID((Integer.parseInt(rs.getString("userID"))));
 							userTemp.setForename(rs.getString("forename"));
 							userTemp.setSurname(rs.getString("surname"));
+							userTemp.setUsername(rs.getString("username"));
 						}
+						//Close the connection with the database
 						rs.close();
+						//Return all the user information
 						return userTemp;
 					}
 				}
-				catch(Exception e){}
+				catch(Exception e){
+					return new User(e.toString());
+				}
 			}
 		}
-		return userTemp;
+		return null;
 	}
 
 	private static Connection establishConnection(){
