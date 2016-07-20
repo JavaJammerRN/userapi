@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserController {
+public class UserController{
+	User userFound;
 
 	@RequestMapping(value="/users", method = RequestMethod.GET)
     public String users(@RequestParam(value="firstName", defaultValue="") String firstName) {
-    	return "Yayy it works";
+		User temp= UserDAO.getUserDataByUsername("mpiccoli");
+		return temp.toString();
     }
 
 }
