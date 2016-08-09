@@ -1,4 +1,4 @@
 com\webservice\User.class
 com\webservice\UserController.class
-com\webservice\App.class
 com\webservice\UserDAO.class
+com\webservice\App.class

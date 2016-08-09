@@ -49,7 +49,10 @@ public class UserDAO {
 		try {
 			// The newInstance() call is a work around for some broken Java implementations
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			conn = (Connection) DriverManager.getConnection("jdbc:mysql://UKL5CG6195GRV:3306/hotdesk_db?" +"user=hotdesk&password=hotdesk");
+			//Use for Michaels DB
+//			conn = (Connection) DriverManager.getConnection("jdbc:mysql://UKL5CG6195GRV:3306/hotdesk_db?" +"user=hotdesk&password=hotdesk");
+			//Use for Reds DB
+			conn = (Connection) DriverManager.getConnection("jdbc:mysql://UKL5CG6195G1Q:3306/hotdesk?" +"user=hotdesk&password=hotdesk");
 		} catch (Exception error) {
 			System.err.println("Could not establish a connection with the DataBase! "+error);
 		}
